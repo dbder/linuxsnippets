@@ -1,0 +1,16 @@
+#!/bin/bash
+# a convenience menu to run testgeneration scripts
+
+PS3="Kies een nummer: "
+
+select script in $(ls ./testdir | grep ".sh$")
+do
+    echo "Gekozen script: $script"
+    select doc in $(ls $(pwd)_DOC/design/)
+    do
+	    echo "Selected doc: $doc"
+	    $(pwd)/OLA-IH/$script $doc
+	    break
+    done
+    break
+done
